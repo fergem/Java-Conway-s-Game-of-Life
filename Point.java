@@ -1,14 +1,27 @@
 package homework;
 
-public class Point
+import java.io.Serializable;
+
+public class Point implements Serializable
 {
-	public final int x, y;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3819524065934836442L;
+	private final int x, y;
     
 	
-    Point(int x, int y)
+    public Point(int x, int y)
     {
         this.x = x;
         this.y = y;
+    }
+    
+    //For testing
+    public Point()
+    {
+    	this.x = (int) Math.random();
+    	this.y = (int) Math.random();
     }
        
     @Override
@@ -16,6 +29,14 @@ public class Point
     {
         Point p = (Point) obj;
         return x == p.x && y == p.y;
+    }
+    
+    @Override
+    public final int hashCode()
+    {
+    	int result = 373; // Constant can vary, but should be prime
+    	result = 37 * result + x;
+    	return result = 37 * result + y;
     }
     
     
@@ -37,5 +58,15 @@ public class Point
             new Point (x+1, y),
             new Point (x+1, y+1)
         };
+    }
+    
+    public int getX()
+    {
+    	return x;
+    }
+    
+    public int getY()
+    {
+    	return y;
     }
 }
